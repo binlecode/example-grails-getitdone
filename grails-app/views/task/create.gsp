@@ -32,7 +32,9 @@
                             Description
                             <span class="required-indicator">*</span>
                         </label>
-                        <g:field type="text" class="long-text" id="description" name="description" required="" maxlength="2048" value="${this.task.description}"/>
+                        <g:textArea id="description" name="description" rows="3" placeholder="task description" required=""
+                                    maxlength="2048"/>
+                        %{--<g:field type="textarea" class="long-text" id="description" name="description" required="" maxlength="2048" value="${this.task.description}"/>--}%
                     </div>
                     <div class="fieldcontain">
                         <label for="assignee">

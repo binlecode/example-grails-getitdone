@@ -10,7 +10,7 @@ class User {
     String middleName
     String email
 
-    static hasMany = [tasks: Task]
+    static hasMany = [tasks: Task, workLogs: Work]
 
     static constraints = {
         firstName nullable: true

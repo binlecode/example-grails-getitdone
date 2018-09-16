@@ -19,6 +19,8 @@ class Task {
 //    User creator  //todo: might be needed when task lifecycle is tracked
     User assignee
 
+    static hasMany = [workLogs: Work]
+
     static constraints = {
         description blank: false, maxSize: 2048
 

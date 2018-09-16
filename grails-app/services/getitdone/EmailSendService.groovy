@@ -5,8 +5,8 @@ import grails.events.annotation.Subscriber
 //@Transactional
 class EmailSendService {
 
-    @Subscriber('eventTaskSaved')
-    def onTaskSaved(Map params) {
+    @Subscriber('eventTaskAssigned')
+    def onTaskAssigned(Map params) {
         log.info "sending email with params: $params"
         try {
             Task task = params.task

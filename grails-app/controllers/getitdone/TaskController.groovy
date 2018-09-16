@@ -46,7 +46,7 @@ class TaskController implements EventPublisher {
         }
 
         // at this point task has been successfully assigned
-        notify("eventTaskSaved", [task: task, assignee: task.assignee,
+        notify("eventTaskAssigned", [task: task, assignee: task.assignee,
                 taskUrl: g.createLink(controller: 'task', action: 'show', id: task.id, absolute: true).encodeAsHTML()
         ])
 
@@ -76,10 +76,13 @@ class TaskController implements EventPublisher {
             return
         }
 
-        // at this point task has been successfully assigned
-        notify("eventTaskSaved", [task: task, assignee: task.assignee,
-                taskUrl: g.createLink(controller: 'task', action: 'show', id: task.id, absolute: true).encodeAsHTML()
-        ])
+        // at this point task has been successfully updated
+        // notify assignee if this update contains an assignment
+        if (task.status != Task.TASK_STATUS_ABORTED && task.status != Task.TASK_STATUS_COMPLETED) {
+            notify("eventTaskAssigned", [task: task, assignee: task.assignee,
+                                         taskUrl: g.createLink(controller: 'task', action: 'show', id: task.id, absolute: true).encodeAsHTML()
+            ])
+        }
 
         request.withFormat {
             form multipartForm {

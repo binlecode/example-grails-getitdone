@@ -29,7 +29,7 @@
                     <!-- use regulated timeInMin for sorting, while use unit based timeSpent for rendering -->
                     <g:sortableColumn property="timeSpentInMin" title="Time Spent" />
                     <g:sortableColumn property="worker.email" title="Worker" />
-                    <g:sortableColumn property="task.description" title="task" />
+                    <g:sortableColumn property="task.description" title="Task" />
                 </tr>
                 </thead>
                 <tbody>

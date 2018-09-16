@@ -1,4 +1,4 @@
-package example.gititdone
+package getitdone
 
 class BootStrap {
 

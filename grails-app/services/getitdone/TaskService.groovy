@@ -7,7 +7,6 @@ interface TaskService {
 
     Task get(Serializable id)
 
-    //todo: customize list method to eager fetch assignees
     List<Task> list(Map args)
 
     Long count()

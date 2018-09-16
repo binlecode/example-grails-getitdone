@@ -6,7 +6,7 @@ import static org.springframework.http.HttpStatus.*
 class TaskController {
 
     TaskService taskService
-    TaskCrudService taskCrudService
+    TaskDataService taskDataService
     UserService userService
 
 
@@ -14,9 +14,9 @@ class TaskController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        // taskService.list() vs taskCrudService.list() to show N+1 case
-//        respond taskService.list(params), model:[taskCount: taskService.count()]
-        respond taskCrudService.list(params), model:[taskCount: taskService.count()]
+        // taskService.listWithAssignee() vs taskCrudService.listWithAssignee() to show N+1 case
+//        respond taskService.listWithAssignee(params), model:[taskCount: taskService.count()]
+        respond taskDataService.listWithAssignee(params), model:[taskCount: taskService.count()]
     }
 
     def show(Long id) {

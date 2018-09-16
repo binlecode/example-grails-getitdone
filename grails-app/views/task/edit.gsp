@@ -41,7 +41,8 @@
                         <label for="assignee">
                             Assignee
                         </label>
-                        <g:select name="assignee.id" id="assignee" from="${this.userList}" optionKey="id" optionValue="email"/>
+                        <g:select name="assignee.id" id="assignee" from="${this.userList}" optionKey="id" optionValue="email"
+                                value="${this.task.assigneeId}" />
                     </div>
                     <div class="fieldcontain required">
                         <label for="status">
@@ -49,7 +50,7 @@
                             <span class="required-indicator">*</span>
                         </label>
                         %{--<g:field type="text" id="status" name="status" required="" value="${this.task.status}"/>--}%
-                        <g:select name="status" from="${getitdone.Task.LIST_TASK_STATUS}"/>
+                        <g:select name="status" from="${getitdone.Task.LIST_TASK_STATUS}" value="${this.task.status}" />
                     </div>
 
                     %{--<f:all bean="task"/>--}%

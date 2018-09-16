@@ -19,8 +19,6 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-
-
             <ol class="property-list task">
                 <li class="fieldcontain">
                     <span id="descriptoin-label" class="property-label">Description</span>

@@ -148,3 +148,20 @@ environments:
                 testOnReturn: false
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+
+---
+# mail configuration
+# Note: need to turn on 'access from a less secure app' security option in Gmail account configuration,
+#   otherwise, google will block it and return this error:
+#   o.g.web.errors.GrailsExceptionResolver: AuthenticationFailedException occurred when processing request: [POST] /emailSender/
+grails:
+    mail:
+        host: "smtp.gmail.com"
+        port: 465
+        username: "sprt4getitdone@gmail.com"
+        password: "Test123!"
+        props:
+            mail.smtp.auth: "true"
+            mail.smtp.socketFactory.port: "465"
+            mail.smtp.socketFactory.class: "javax.net.ssl.SSLSocketFactory"
+            mail.smtp.socketFactory.fallback: "false"

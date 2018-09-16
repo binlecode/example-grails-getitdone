@@ -35,6 +35,7 @@ if (Environment.isDevelopmentMode() && targetDir != null) {
     }
     logger("StackTrace", ERROR, ['FULL_STACKTRACE'], false)
 
+    logger('getitdone', DEBUG, loggerList, false)
     logger('org.hibernate.SQL', DEBUG, loggerList, false)    // show sql statements
     logger('org.hibernate.type.descriptor.sql.BasicBinder', DEBUG, loggerList, false)  // show sql bind variable values
 //    logger('grails.plugin.logtime', DEBUG, loggerList, false)

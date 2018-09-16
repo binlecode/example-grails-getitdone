@@ -1,14 +1,14 @@
 package getitdone
 
+import grails.events.EventPublisher
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
-class TaskController {
+class TaskController implements EventPublisher {
 
     TaskService taskService
     TaskDataService taskDataService
     UserService userService
-
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -45,6 +45,11 @@ class TaskController {
             return
         }
 
+        // at this point task has been successfully assigned
+        notify("eventTaskSaved", [task: task, assignee: task.assignee,
+                taskUrl: g.createLink(controller: 'task', action: 'show', id: task.id, absolute: true).encodeAsHTML()
+        ])
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'task.label', default: 'Task'), task.id])
@@ -70,6 +75,11 @@ class TaskController {
             respond task.errors, view:'edit', model: [userList: userService.list()]
             return
         }
+
+        // at this point task has been successfully assigned
+        notify("eventTaskSaved", [task: task, assignee: task.assignee,
+                taskUrl: g.createLink(controller: 'task', action: 'show', id: task.id, absolute: true).encodeAsHTML()
+        ])
 
         request.withFormat {
             form multipartForm {

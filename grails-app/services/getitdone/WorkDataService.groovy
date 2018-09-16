@@ -18,6 +18,7 @@ class WorkDataService {
      */
     List<Work> trackWork(Map params) {
         //todo: need to eager fetch user and task into the list to avoid N+1 queries
+        //todo: support pagination
         def taskList = Work.where {
             if (params.workDate) {
                 workDate == params.workDate

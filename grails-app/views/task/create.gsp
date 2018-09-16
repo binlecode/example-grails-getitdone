@@ -32,8 +32,7 @@
                             Description
                             <span class="required-indicator">*</span>
                         </label>
-                        <g:field type="text" id="description" name="description" required="" maxlength="2048" value="${this.task.description}"
-                                size="80"/>
+                        <g:field type="text" class="long-text" id="description" name="description" required="" maxlength="2048" value="${this.task.description}"/>
                     </div>
                     <div class="fieldcontain">
                         <label for="assignee">

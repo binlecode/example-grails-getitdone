@@ -6,6 +6,7 @@ import static org.springframework.http.HttpStatus.*
 class UserController {
 
     UserService userService
+    TaskService taskService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -45,7 +46,8 @@ class UserController {
     }
 
     def edit(Long id) {
-        respond userService.get(id)
+        User user = userService.get(id)
+        respond user, model: [userTaskCount: taskService.countByAssignee(user)]
     }
 
     def update(User user) {

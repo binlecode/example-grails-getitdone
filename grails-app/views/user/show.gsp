@@ -28,12 +28,14 @@
                         <f:display bean="${this.user}" property="firstName"  displayStyle="table" theme="${theme}"/>
                     </div>
                 </li>
+                <g:if test="${this.user.middleName}">
                 <li class="fieldcontain">
                     <span id="middleName-label" class="property-label">Middle Name</span>
                     <div class="property-value" aria-labelledby="middleName-label">
                         <f:display bean="${this.user}" property="middleName"  displayStyle="table" theme="${theme}"/>
                     </div>
                 </li>
+                </g:if>
                 <li class="fieldcontain">
                     <span id="lastName-label" class="property-label">Last Name</span>
                     <div class="property-value" aria-labelledby="lastName-label">
@@ -47,29 +49,21 @@
                     </div>
                 </li>
                 <li class="fieldcontain">
-                    <span id="tasks-label" class="property-label">Tasks</span>
+                    <span id="tasks-label" class="property-label">Assigned Tasks</span>
                     <div class="property-value" aria-labelledby="tasks-label">
                         <ul>
                             <g:each in="${this.user.tasks.sort {it.lastUpdated ?: it.dateCreated}.reverse()}" var="task" status="j">
                                 <li>
                                     <g:link method="GET" controller="task" action="show" params="[id: task.id]">
-                                        ${task.description} [${task.status} at ${task.lastUpdated ?: task.dateCreated}]
+                                        ${task.description}
                                     </g:link>
+                                    [${task.status} at ${task.lastUpdated ?: task.dateCreated}]
                                 </li>
                             </g:each>
                         </ul>
-
                     </div>
-
-
-
                 </li>
-
             </ol>
-
-
-
-
 
             <g:form resource="${this.user}" method="DELETE">
                 <fieldset class="buttons">

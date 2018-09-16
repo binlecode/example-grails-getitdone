@@ -225,6 +225,10 @@ input, select, textarea {
     border: 1px solid #cccccc;
     font-size: 1em;
     padding: 0.2em 0.4em;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 select {
@@ -240,6 +244,13 @@ textarea {
     height: 150px;
     overflow: auto; /* IE always renders vertical scrollbar without this */
     vertical-align: top;
+}
+
+input[type=text] {
+    width: 20em;
+}
+input[type=text].long-text {
+    width: 35em;
 }
 
 input[type=checkbox], input[type=radio] {

@@ -29,7 +29,37 @@
             <g:form resource="${this.user}" method="PUT">
                 <g:hiddenField name="version" value="${this.user?.version}" />
                 <fieldset class="form">
-                    <f:all bean="user"/>
+                    %{--<f:all bean="user"/>--}%
+
+                    <div class="fieldcontain">
+                        <label for="firstName">First Name</label>
+                        <g:field type="text" id="firstName" name="firstName" value="${this.user.firstName}"/>
+                    </div>
+                    <div class="fieldcontain">
+                        <label for="middleName">Middle Name</label>
+                        <g:field type="text" id="middleName" name="middleName" value="${this.user.middleName}"/>
+                    </div>
+                    <div class="fieldcontain">
+                        <label for="lastName">Last Name</label>
+                        <g:field type="text" id="lastName" name="lastName" value="${this.user.lastName}"/>
+                    </div>
+                    <div class="fieldcontain required">
+                        <label for="email">
+                            Email
+                            <span class="required-indicator">*</span>
+                        </label>
+                        <g:field type="text" id="email" name="email" value="${this.user.email}"/>
+                    </div>
+
+                    <div class="fieldcontain">
+                        <label>
+                            Assigned Tasks Count
+                        </label>
+                        <span class="badge">
+                            ${this.userTaskCount}
+                        </span>
+                    </div>
+
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />

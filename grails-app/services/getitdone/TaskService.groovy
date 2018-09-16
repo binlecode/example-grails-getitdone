@@ -12,6 +12,8 @@ interface TaskService {
 
     Long count()
 
+    Long countByAssignee(User assignee)
+
     void delete(Serializable id)
 
     Task save(Task task)

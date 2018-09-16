@@ -26,7 +26,7 @@
                     <th>Assignee</th>
                     <g:sortableColumn property="status" title="Status" />
                     <g:sortableColumn property="dateCreated" title="Last Update Time" />
-                    <g:sortableColumn property="dateCreated" title="Create Time" />
+                    %{--<g:sortableColumn property="dateCreated" title="Create Time" />--}%
                 </tr>
                 </thead>
                 <tbody>
@@ -40,7 +40,7 @@
                         </td>
                         <td><f:display bean="${bean}" property="status"  displayStyle="table" theme="${theme}"/></td>
                         <td><f:display bean="${bean}" property="lastUpdated"  displayStyle="table" theme="${theme}"/></td>
-                        <td><f:display bean="${bean}" property="dateCreated"  displayStyle="table" theme="${theme}"/></td>
+                        %{--<td><f:display bean="${bean}" property="dateCreated"  displayStyle="table" theme="${theme}"/></td>--}%
                     </tr>
                 </g:each>
                 </tbody>

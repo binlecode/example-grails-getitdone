@@ -14,6 +14,11 @@ class TaskController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
+        // apply default sorting
+        if (!params.sort) {
+            params.sort = 'lastUpdated'
+            params.order = 'desc'
+        }
         // taskService.listWithAssignee() vs taskCrudService.listWithAssignee() to show N+1 case
 //        respond taskService.listWithAssignee(params), model:[taskCount: taskService.count()]
         respond taskDataService.listWithAssignee(params), model:[taskCount: taskService.count()]

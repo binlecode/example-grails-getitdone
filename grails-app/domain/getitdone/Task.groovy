@@ -14,12 +14,10 @@ class Task {
 
     String description
 
-    String status = TASK_STATUS_CREATED //todo: add index on this column in BootStrap.groovy
+    String status //todo: add index on this column in BootStrap.groovy
 
 //    User creator  //todo: might be needed when task lifecycle is tracked
     User assignee
-
-//    static belongsTo = [user: User]
 
     static constraints = {
         description blank: false, maxSize: 2048
@@ -29,8 +27,8 @@ class Task {
         status blank: false, inList: LIST_TASK_STATUS
     }
 
-    // fill-in default values  //fixme: this event is not called with JPA interface-only TaskService.save() method
-    def beforeInsert() {
+    //fixme: for unknown reason, beforeInsert is not invoked before persistence, so beforeValidate is used here
+    def beforeValidate() {
         if (!status) {
             status = TASK_STATUS_CREATED
         }

@@ -15,7 +15,7 @@
             </ul>
         </div>
         <div id="create-work" class="content scaffold-create" role="main">
-            <h1><g:message code="default.create.label" args="[entityName]" /></h1>
+            <h1><g:message code="default.logWork.label" args="[entityName]" default="Log Work" /></h1>
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
@@ -35,14 +35,16 @@
                             Worker
                             <span class="required-indicator">*</span>
                         </label>
-                        <g:select name="worker.id" id="worker" required="" from="${this.workerList}" optionKey="id" optionValue="email"/>
+                        <g:select name="worker.id" id="worker" required="" from="${this.workerList}" optionKey="id" optionValue="email"
+                                value="${this.work.workerId}"/>
                     </div>
                     <div class="fieldcontain required">
                         <label for="task">
                             Task
                             <span class="required-indicator">*</span>
                         </label>
-                        <g:select name="task.id" id="task" required="" from="${this.taskList}" optionKey="id" optionValue="description"/>
+                        <g:select name="task.id" id="task" required="" from="${this.taskList}" optionKey="id" optionValue="description"
+                                value="${this.work.taskId}"/>
                     </div>
 
                     <div class="fieldcontain required">

@@ -73,7 +73,11 @@ For more details, see [OCI guide](http://guides.grails.org/grails-on-travis-basi
 Once Travis-CI can build on Github push, the [build|passing] Travis status badge can be added to README.md (check the top of this file). 
 
 
+## Docker container deployment
 
+fix server port in ```application.yml```
+
+By default gradlew assemble picks product environment. For security reason and demo purpose, we build jar with development env.
 
 
 

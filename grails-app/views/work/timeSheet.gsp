@@ -9,7 +9,7 @@
         <a href="#list-work" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
         <div class="nav" role="navigation">
             <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+                %{--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>--}%
                 <li><g:link class="create" action="create"><g:message code="default.logWork.label" args="[entityName]" default="Log Work" /></g:link></li>
             </ul>
         </div>

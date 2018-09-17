@@ -1,3 +1,4 @@
+<%@ page import="getitdone.Task" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -52,7 +53,26 @@
                     <span id="tasks-label" class="property-label">Assigned Tasks</span>
                     <div class="property-value" aria-labelledby="tasks-label">
                         <ul>
-                            <g:each in="${this.user.tasks.sort {it.lastUpdated ?: it.dateCreated}.reverse()}" var="task" status="j">
+                            <g:each in="${this.user.tasks.findAll {
+                                it.status != Task.TASK_STATUS_COMPLETED && it.status != Task.TASK_STATUS_ABORTED
+                            }.sort {it.lastUpdated ?: it.dateCreated}.reverse()}" var="task" status="j">
+                                <li>
+                                    <g:link method="GET" controller="task" action="show" params="[id: task.id]">
+                                        ${task.description}
+                                    </g:link>
+                                    [${task.status} at ${task.lastUpdated ?: task.dateCreated}]
+                                </li>
+                            </g:each>
+                        </ul>
+                    </div>
+                </li>
+                <li class="fieldcontain">
+                    <span id="ended-tasks-label" class="property-label">Ended Tasks</span>
+                    <div class="property-value" aria-labelledby="ended-tasks-label">
+                        <ul>
+                            <g:each in="${this.user.tasks.findAll {
+                                it.status == Task.TASK_STATUS_COMPLETED || it.status == Task.TASK_STATUS_ABORTED
+                            }.sort {it.lastUpdated ?: it.dateCreated}.reverse()}" var="task" status="k">
                                 <li>
                                     <g:link method="GET" controller="task" action="show" params="[id: task.id]">
                                         ${task.description}

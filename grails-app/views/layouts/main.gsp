@@ -53,16 +53,41 @@
                             <li><g:link controller="work" action="create">Log Work</g:link></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Time Sheet<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><g:link controller="work" action="timeSheet">Team</g:link></li>
+                            <li><g:link uri="#">Personal</g:link></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">App Status <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Environment: ${grails.util.Environment.current.name}</a></li>
+                            <li><a href="#">App profile: ${grailsApplication.config.grails?.profile}</a></li>
+                            <li><a href="#">App version:
+                                <g:meta name="info.app.version"/></a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Grails version:
+                                <g:meta name="info.app.grailsVersion"/></a>
+                            </li>
+                            <li><a href="#">Groovy version: ${GroovySystem.getVersion()}</a></li>
+                            <li><a href="#">JVM version: ${System.getProperty('java.version')}</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
 
-
-
     <g:layoutBody/>
 
     <div class="footer" role="contentinfo">
+        <p>This software is proof-of-concept, for demo only. See: <a href="https://github.com/binlecode/example-grails-getitdone">Github repo.</a></p>
+        <p>Contact: bin.le.code@gmail.com</p>
     </div>
 
     <div id="spinner" class="spinner" style="display:none;">
@@ -70,6 +95,5 @@
     </div>
 
     <asset:javascript src="application.js"/>
-
 </body>
 </html>

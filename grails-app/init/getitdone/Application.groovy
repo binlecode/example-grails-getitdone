@@ -3,6 +3,7 @@ package getitdone
 import grails.boot.GrailsApp
 import grails.boot.config.GrailsAutoConfiguration
 import org.springframework.boot.actuate.health.DataSourceHealthIndicator
+import org.springframework.boot.actuate.health.DiskSpaceHealthIndicatorProperties
 
 class Application extends GrailsAutoConfiguration {
     static void main(String[] args) {
@@ -15,9 +16,9 @@ class Application extends GrailsAutoConfiguration {
             // Configure data source health indicator based on the dataSource in the application context.
             databaseHealthCheck(DataSourceHealthIndicator, ref('dataSource'))
 
-//            diskSpaceHealthIndicatorProperties(DiskSpaceHealthIndicatorProperties) {
-//                threshold = 250 * 1024 * 1024
-//            }
+            diskSpaceHealthIndicatorProperties(DiskSpaceHealthIndicatorProperties) {
+                threshold = 250 * 1024 * 1024
+            }
         }
     }
 }

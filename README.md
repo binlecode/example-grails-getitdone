@@ -1,4 +1,8 @@
 
+# Example Grails Get-It-Done Application
+
+[![Build Status](https://travis-ci.org/binlecode/example-grails-getitdone.svg?branch=master)](https://travis-ci.org/binlecode/example-grails-getitdone)
+
 
 ## app bootstrap
 
@@ -64,7 +68,9 @@ jdk:
   - oraclejdk8 #  
 ``` 
 
-For more details, see [OCI guide](http://guides.grails.org/grails-on-travis-basics/guide/index.html). 
+For more details, see [OCI guide](http://guides.grails.org/grails-on-travis-basics/guide/index.html).
+
+Once Travis-CI can build on Github push, the [build|passing] Travis status badge can be added to README.md (check the top of this file). 
 
 
 

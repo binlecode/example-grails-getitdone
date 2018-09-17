@@ -49,6 +49,23 @@ this will generate controller, and JPA compliant UserService class.
 
 
 
+## Travis CI integration
+create a ```.travis.yml``` file to project root folder
+```yaml
+sudo: false # follows default ubuntu convention (Travis on ubuntu)
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/ # 
+language: groovy # 
+jdk:
+  - oraclejdk8 #  
+``` 
+
+For more details, see [OCI guide](http://guides.grails.org/grails-on-travis-basics/guide/index.html). 
+
 
 
 

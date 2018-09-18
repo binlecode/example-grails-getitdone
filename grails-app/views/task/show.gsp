@@ -69,7 +69,7 @@
                     <div class="property-value" aria-labelledby="comments-label">
                         <ul class="list-unstyled">
                             <g:if test="${this.task.comments}">
-                                <g:each in="${this.task.comments.sort {it.lastUpdated}.reverse()}" var="comment" status="k">
+                                <g:each in="${this.task.comments.sort {it.lastUpdated}}" var="comment" status="k">
                                     <li>
                                         <div class="card card-block">
                                             <div class="card-title">

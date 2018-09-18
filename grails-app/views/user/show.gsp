@@ -62,8 +62,8 @@
                                         ${task.description.encodeAsRaw()}
                                     </g:link>
                                     <span class="badge ${task.status == 'created' ? 'badge-info' : 'badge-primary'}">
-                                    ${task.status} at ${task.lastUpdated ?: task.dateCreated}
-                                    </span>
+                                    ${task.status}
+                                    </span> at ${task.lastUpdated ?: task.dateCreated}
                                     </div>
                                 </li>
                             </g:each>
@@ -73,7 +73,7 @@
                 <li class="fieldcontain">
                     <span id="ended-tasks-label" class="property-label">Ended Tasks</span>
                     <div class="property-value" aria-labelledby="ended-tasks-label">
-                        <ul>
+                        <ul class="list-unstyled">
                             <g:each in="${this.user.tasks.findAll {
                                 it.status == Task.TASK_STATUS_COMPLETED || it.status == Task.TASK_STATUS_ABORTED
                             }.sort {it.lastUpdated ?: it.dateCreated}.reverse()}" var="task" status="k">
@@ -83,8 +83,8 @@
                                         ${task.description.encodeAsRaw()}
                                     </g:link>
                                     <span class="badge ${task.status == 'completed' ? 'badge-success' : 'badge-warning'}">
-                                        ${task.status} at ${task.lastUpdated ?: task.dateCreated}
-                                    </span>
+                                        ${task.status}
+                                    </span> at ${task.lastUpdated ?: task.dateCreated}
                                     </div>
                                 </li>
                             </g:each>

@@ -61,7 +61,9 @@
                                     <g:link style="text-decoration: none" method="GET" controller="task" action="show" params="[id: task.id]">
                                         ${task.description.encodeAsRaw()}
                                     </g:link>
-                                    [${task.status} at ${task.lastUpdated ?: task.dateCreated}]
+                                    <span class="badge ${task.status == 'created' ? 'badge-info' : 'badge-primary'}">
+                                    ${task.status} at ${task.lastUpdated ?: task.dateCreated}
+                                    </span>
                                     </div>
                                 </li>
                             </g:each>
@@ -80,7 +82,9 @@
                                     <g:link method="GET" controller="task" action="show" params="[id: task.id]">
                                         ${task.description.encodeAsRaw()}
                                     </g:link>
-                                    [${task.status} at ${task.lastUpdated ?: task.dateCreated}]
+                                    <span class="badge ${task.status == 'completed' ? 'badge-success' : 'badge-warning'}">
+                                        ${task.status} at ${task.lastUpdated ?: task.dateCreated}
+                                    </span>
                                     </div>
                                 </li>
                             </g:each>

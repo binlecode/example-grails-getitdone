@@ -1,3 +1,4 @@
+<%@ page import="getitdone.Task" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -44,8 +45,10 @@
                             Task
                             <span class="required-indicator">*</span>
                         </label>
-                        <g:select name="task.id" id="task" required="" from="${this.taskList}" optionKey="id" optionValue="description"
-                                value="${this.work.taskId}" />
+                        <g:select name="task.id" id="task" required=""
+                                  from="${this.taskList.collect{[id: it.id, description: it.description.encodeAsRaw()]} }"
+                                  optionKey="id" optionValue="description"
+                                  value="${this.work.taskId}" />
                     </div>
                     <div class="fieldcontain required">
                         <label for="timeSpent">

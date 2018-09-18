@@ -23,7 +23,7 @@
                 <li class="fieldcontain">
                     <span id="descriptoin-label" class="property-label">Description</span>
                     <div class="property-value" aria-labelledby="description-label">
-                        ${this.task.description}
+                        ${this.task.description.encodeAsRaw()}
                     </div>
                 </li>
                 <li class="fieldcontain">

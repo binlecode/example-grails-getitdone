@@ -32,7 +32,9 @@
                 <tbody>
                 <g:each in="${taskList}" var="bean" status="i">
                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                        <td><g:link method="GET" resource="${bean}"><f:display bean="${bean}" property="description" displayStyle="table" /></g:link></td>
+                        <td>
+                            <g:link style="text-decoration: none;" method="GET" resource="${bean}">${bean.description.encodeAsRaw()}</g:link>
+                        </td>
                         <td>
                             <g:link method="GET" controller="user" action="show" params="[id: bean.assigneeId]">
                                 <f:display bean="${bean}" property="assignee.email"  displayStyle="table" theme="${theme}"/>

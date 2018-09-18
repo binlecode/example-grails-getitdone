@@ -32,7 +32,7 @@
                     <span id="task-label" class="property-label">Task</span>
                     <div class="property-value" aria-labelledby="task-label">
                         <g:link controller="task" action="show" params="[id: this.work.taskId]">
-                        ${this.work.task.description}
+                        ${this.work.task.description.encodeAsRaw()}
                         </g:link>
                     </div>
                 </li>

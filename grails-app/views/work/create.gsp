@@ -43,7 +43,9 @@
                             Task
                             <span class="required-indicator">*</span>
                         </label>
-                        <g:select name="task.id" id="task" required="" from="${this.taskList}" optionKey="id" optionValue="description"
+                        <g:select name="task.id" id="task" required=""
+                                  from="${this.taskList.collect{[id: it.id, description: it.description.encodeAsRaw()]}}"
+                                  optionKey="id" optionValue="description"
                                 value="${this.work.taskId}"/>
                     </div>
 

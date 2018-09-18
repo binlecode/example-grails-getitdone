@@ -79,5 +79,12 @@ fix server port in ```application.yml```
 
 By default gradlew assemble picks product environment. For security reason and demo purpose, we build jar with development env.
 
+added Dockerfile to the project root folder that
+- pulled in azul/java-zulu openjdk which is compatible with oracle version
+- build jar and copy to ```$WORKDIR```
+- run java jar from ```$WORKDIR```
 
-
+run 
+```bash
+docker build .
+```

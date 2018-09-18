@@ -52,15 +52,17 @@
                 <li class="fieldcontain">
                     <span id="tasks-label" class="property-label">Assigned Tasks</span>
                     <div class="property-value" aria-labelledby="tasks-label">
-                        <ul>
+                        <ul class="list-unstyled">
                             <g:each in="${this.user.tasks.findAll {
                                 it.status != Task.TASK_STATUS_COMPLETED && it.status != Task.TASK_STATUS_ABORTED
                             }.sort {it.lastUpdated ?: it.dateCreated}.reverse()}" var="task" status="j">
-                                <li>
-                                    <g:link method="GET" controller="task" action="show" params="[id: task.id]">
-                                        ${task.description}
+                                <li class="task-description">
+                                    <div>
+                                    <g:link style="text-decoration: none" method="GET" controller="task" action="show" params="[id: task.id]">
+                                        ${task.description.encodeAsRaw()}
                                     </g:link>
                                     [${task.status} at ${task.lastUpdated ?: task.dateCreated}]
+                                    </div>
                                 </li>
                             </g:each>
                         </ul>
@@ -73,11 +75,13 @@
                             <g:each in="${this.user.tasks.findAll {
                                 it.status == Task.TASK_STATUS_COMPLETED || it.status == Task.TASK_STATUS_ABORTED
                             }.sort {it.lastUpdated ?: it.dateCreated}.reverse()}" var="task" status="k">
-                                <li>
+                                <li class="task-description">
+                                    <div>
                                     <g:link method="GET" controller="task" action="show" params="[id: task.id]">
-                                        ${task.description}
+                                        ${task.description.encodeAsRaw()}
                                     </g:link>
                                     [${task.status} at ${task.lastUpdated ?: task.dateCreated}]
+                                    </div>
                                 </li>
                             </g:each>
                         </ul>

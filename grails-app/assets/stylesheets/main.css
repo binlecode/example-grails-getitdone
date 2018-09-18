@@ -289,6 +289,13 @@ ul.one-to-many li.add {
     list-style-type: none;
 }
 
+li.task-description {
+    border-bottom: 1px solid #ddd;
+}
+li.task-description > div:hover {
+    background-color: #CCCCCC;
+}
+
 /* EMBEDDED PROPERTIES */
 
 fieldset.embedded {

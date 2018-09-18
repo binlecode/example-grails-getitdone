@@ -32,9 +32,15 @@
                             Description
                             <span class="required-indicator">*</span>
                         </label>
-                        <g:textArea id="description" name="description" rows="3" placeholder="task description" required=""
-                                    maxlength="2048"/>
-                        %{--<g:field type="textarea" class="long-text" id="description" name="description" required="" maxlength="2048" value="${this.task.description}"/>--}%
+                        %{--<g:textArea id="description" name="description" rows="3" placeholder="task description" required=""--}%
+                                    %{--maxlength="2048"/>--}%
+
+                        <!-- Include stylesheet for QuillJS editor -->
+                        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+                        <!-- Create the editor container -->
+                        <input type="hidden" id="description" name="description" />
+                        <div id="editor-container">
+                        </div>
                     </div>
                     <div class="fieldcontain">
                         <label for="assignee">
@@ -48,5 +54,7 @@
                 </fieldset>
             </g:form>
         </div>
+
+        <g:render template="quilljs_integration" />
     </body>
 </html>

@@ -32,7 +32,7 @@
                 <tbody>
                 <g:each in="${taskList}" var="bean" status="i">
                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                        <td>
+                        <td class="task-description">
                             <g:link style="text-decoration: none;" method="GET" resource="${bean}">${bean.description.encodeAsRaw()}</g:link>
                         </td>
                         <td>

@@ -302,7 +302,8 @@ li.task-description {
 li.task-description > div:hover {
     background-color: #CCCCCC;
 }
-li.task-description > div ul {
+
+.task-description ul, .task-description ol {
     list-style-position: inside;
 }
 
@@ -665,14 +666,15 @@ img.grails-logo {
     overflow: hidden;
     padding: 0;
     border: none;
-    border-radius: .28571429rem;
+    /*border-radius: .28571429rem;*/
     box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 }
 .card-block {
     font-size: 1em;
     position: relative;
     margin: 0;
-    padding: 1em;
+    /*padding: 1em;*/
+    padding: 0.5em;
     border: none;
     border-top: 1px solid rgba(34, 36, 38, .1);
     box-shadow: none;

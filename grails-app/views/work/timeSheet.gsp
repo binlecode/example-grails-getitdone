@@ -36,11 +36,14 @@
 
                         <td>
                             <g:link method="GET" controller="task" action="show" params="[id: bean.taskId]">
+                                <span class="badge ${g.resolveTaskStatusBadgeClass(status: bean.task.status)}">
+                                ${bean.task.status}
+                                </span>
                                 <g:if test="${bean.task.description.size() > 30}">
-                                    [<b>${bean.task.status}</b>] ${bean.task.description.take(26)} ...
+                                    ${bean.task.description.take(26)} ...
                                 </g:if>
                                 <g:else>
-                                    <b>${bean.task.status}</b> : ${bean.task.description}
+                                    ${bean.task.description}
                                 </g:else>
                             </g:link>
                         </td>
@@ -68,6 +71,30 @@
 
                     </tr>
                 </g:each>
+
+                %{-- add stats line --}%
+                %{--<tr>--}%
+                    %{--<td>--}%
+                    %{--</td>--}%
+                    %{--<td>--}%
+                    %{--</td>--}%
+                    %{--<g:each in="${workDateRange}" var="workDate" state="k">--}%
+                        %{--<td>--}%
+                            %{--<g:if test="${bean.workDate == workDate}">--}%
+                                %{--<span class="badge">--}%
+                                    %{--<g:link style="text-decoration: none; color: whitesmoke"--}%
+                                            %{--method="GET" controller="work" action="show" params="[id: bean.id]">--}%
+                                        %{--${bean.timeSpent} ${bean.timeSpentUnit}--}%
+                                    %{--<g:if test="${bean.timeSpentUnit == getitdone.Work.TIME_UNIT_HOUR}">--}%
+                                    %{--( ${bean.timeSpentInMin} min )--}%
+                                    %{--</g:if>--}%
+                                    %{--</g:link>--}%
+                                %{--</span>--}%
+                            %{--</g:if>--}%
+                        %{--</td>--}%
+                    %{--</g:each>--}%
+                %{--</tr>--}%
+
                 </tbody>
             </table>
 

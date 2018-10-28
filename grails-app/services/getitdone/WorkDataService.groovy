@@ -22,31 +22,6 @@ class WorkDataService {
     }
 
     /**
-     * @param dayInWeek  'yyyy-MM-dd'
-     * @param weekDayStart beginning day of the week, default to sunday if not given
-     * @return
-     */
-    Map getBeginEndDatesOfWeek(LocalDate dayInWeek, DayOfWeek weekDayStart = DayOfWeek.SUNDAY) {
-        def firstDayOfWeek = dayInWeek.with(previousOrSame(weekDayStart))
-        [
-                dayBegin: firstDayOfWeek,
-                dayEnd: firstDayOfWeek.plusDays(6)
-        ]
-    }
-
-    /**
-     * @param dateStr  'yyyy-MM-dd'
-     * @return
-     */
-    Map getBeginEndDatesOfMonth(LocalDate dayInMonth) {
-        def firstDayOfMonth = dayInMonth.withDayOfMonth(1) // first day of month
-        return [
-                monthDayBegin: firstDayOfMonth,
-                monthDayEnd: firstDayOfMonth.plusDays(dayInMonth.lengthOfMonth() - 1)
-        ]
-    }
-
-    /**
      * @param dateInWeek
      * @param weekDayStart defaut to sunday if not given
      * @return list of one week of {@link LocalDate} including input date
@@ -77,6 +52,20 @@ class WorkDataService {
                 workDateRange: clientDateRange,
                 workList: workList
         ]
+    }
+
+    /**
+     * build work stats map of total time spent per day
+     * @param workList
+     * @return map of key: localDate, value: totalTimeSpent in hours
+     */
+    Map trackWorkStats(List<Work> workList) {
+        Map dateWithTotalTimeSpent = [:]
+        workList.groupBy { it.localWorkDate }.each { LocalDate k, List v ->
+            float totalMin = v.sum { w -> w.timeSpentInMin }
+            dateWithTotalTimeSpent.put(k, (totalMin / 60).round(2)) // in number of hours
+        }
+        return dateWithTotalTimeSpent
     }
 
     /**
@@ -135,7 +124,7 @@ class WorkDataService {
      * @param zoneId
      */
     ZonedDateTime getZonedDateTimeFromLocalDate(LocalDate localDate, ZoneId zoneId = null) {
-        // note adding 0:0 time portion, which is the same as clientDate.atStartOfDay()
+        // adding 0:0 time portion, which is the same as clientDate.atStartOfDay()
         ZonedDateTime.of(localDate, LocalTime.of(0, 0), zoneId ?: ZoneId.systemDefault())
     }
 

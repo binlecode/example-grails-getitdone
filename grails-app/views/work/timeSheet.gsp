@@ -11,6 +11,7 @@
             <ul>
                 %{--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>--}%
                 <li><g:link class="create" action="create"><g:message code="default.logWork.label" args="[entityName]" default="Log Work" /></g:link></li>
+                <li><g:link class="btn" action="timeSheet">Current Week</g:link></li>
                 <li><g:link class="btn" action="timeSheet" params="[showLastWeek: true, currentWeekDateBegin: workDateRange[0]]"><< Last Week</g:link></li>
                 <li><g:link class="btn" action="timeSheet" params="[showNextWeek: true, currentWeekDateBegin: workDateRange[0]]">Next Week >></g:link></li>
             </ul>
@@ -63,9 +64,6 @@
                                     <g:link style="text-decoration: none; color: whitesmoke"
                                             method="GET" controller="work" action="show" params="[id: bean.id]">
                                     ${bean.timeSpent} ${bean.timeSpentUnit}
-                                    %{--<g:if test="${bean.timeSpentUnit == getitdone.Work.TIME_UNIT_HOUR}">--}%
-                                        %{--( ${bean.timeSpentInMin} min )--}%
-                                    %{--</g:if>--}%
                                     </g:link>
                                     </span>
                                 </g:if>
@@ -74,6 +72,24 @@
 
                     </tr>
                 </g:each>
+
+                %{-- add work stats row with total time spent per day --}%
+                <g:if test="${workStats}">
+                    <tr class="odd">
+                        <td></td>
+                        <td>Total Time</td>
+                        <g:each in="${workDateRange}" var="workDate" state="k">
+                            <td>
+                                <g:if test="${workStats.keySet().any { it == workDate}}">
+                                    <span>${workStats.get(workDate)} hrs</span>
+                                </g:if>
+                                <g:else>
+                                    <span>0</span>
+                                </g:else>
+                            </td>
+                        </g:each>
+                    </tr>
+                </g:if>
 
                 </tbody>
             </table>

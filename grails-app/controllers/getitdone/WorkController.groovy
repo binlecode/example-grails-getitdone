@@ -1,7 +1,7 @@
 package getitdone
 
 import grails.validation.ValidationException
-
+import java.time.LocalDate
 import static org.springframework.http.HttpStatus.*
 
 class WorkController {
@@ -17,15 +17,16 @@ class WorkController {
     //todo: add work log stats such as total time spent for each day
     def timeSheet() {
 
-        // by default the date range is current week
-
-//        def workWithStats = workDataService.trackWorkWithStats(params)
-
-        params.clientDate = '2018-09-10'
+        if (params.showNextWeek) {
+            params.clientDate = LocalDate.parse(params.currentWeekDateBegin).plusDays(7).toString()
+        } else if (params.showLastWeek) {
+            params.clientDate = LocalDate.parse(params.currentWeekDateBegin).minusDays(7)
+        } else {
+            // by default the date range is current week
+            params.clientDate = params.clientDate ?: LocalDate.now().toString() // '2018-09-10'
+        }
 
         Map workTrack = workDataService.trackWorkForWeek(params.worker as User, params.clientDate as String)
-//        Map workTrack = workDataService.trackWorkForMonth(params.worker as User, params.clientDate as String)
-
         render view: 'timeSheet', model: [workDateRange: workTrack.workDateRange, workList: workTrack.workList]
     }
 

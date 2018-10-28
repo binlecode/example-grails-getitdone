@@ -11,6 +11,8 @@
             <ul>
                 %{--<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>--}%
                 <li><g:link class="create" action="create"><g:message code="default.logWork.label" args="[entityName]" default="Log Work" /></g:link></li>
+                <li><g:link class="btn" action="timeSheet" params="[showLastWeek: true, currentWeekDateBegin: workDateRange[0]]"><< Last Week</g:link></li>
+                <li><g:link class="btn" action="timeSheet" params="[showNextWeek: true, currentWeekDateBegin: workDateRange[0]]">Next Week >></g:link></li>
             </ul>
         </div>
         <div id="list-work" class="content scaffold-list" role="main">

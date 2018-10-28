@@ -29,9 +29,12 @@
                 <li class="fieldcontain">
                     <span id="assignee-label" class="property-label">Assignee</span>
                     <div class="property-value" aria-labelledby="assignee-label">
+                        %{-- a task may not be assigned thus assigneeId could be null --}%
+                        <g:if test="${this.task.assigneeId}">
                         <g:link controller="user" action="show" id="${this.task.assigneeId}">
                         ${this.task.assignee.email}
                         </g:link>
+                        </g:if>
                     </div>
                 </li>
                 <li class="fieldcontain">

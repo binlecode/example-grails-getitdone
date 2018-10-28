@@ -49,8 +49,10 @@
                         <label for="assignee">
                             Assignee
                         </label>
-                        <g:select name="assignee.id" id="assignee" from="${this.userList}" optionKey="id" optionValue="email"
-                                value="${this.task.assigneeId}" />
+                        <g:select name="assignee.id" id="assignee" from="${this.userList}"
+                                  optionKey="id" optionValue="email"
+                                  value="${this.task.assigneeId}"
+                                  noSelection="['':'Assign task to:']"/>
                     </div>
                     <div class="fieldcontain required">
                         <label for="status">

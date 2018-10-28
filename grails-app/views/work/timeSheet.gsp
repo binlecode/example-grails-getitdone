@@ -46,7 +46,7 @@
                                     ${bean.task.description.take(26)} ...
                                 </g:if>
                                 <g:else>
-                                    ${bean.task.description}
+                                    ${bean.task.description.encodeAsRaw()}
                                 </g:else>
                             </g:link>
                         </td>

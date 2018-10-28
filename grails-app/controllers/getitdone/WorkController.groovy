@@ -27,7 +27,8 @@ class WorkController {
         }
 
         Map workTrack = workDataService.trackWorkForWeek(params.worker as User, params.clientDate as String)
-        render view: 'timeSheet', model: [workDateRange: workTrack.workDateRange, workList: workTrack.workList]
+        Map workStats = workDataService.trackWorkStats(workTrack.workList)
+        render view: 'timeSheet', model: [workDateRange: workTrack.workDateRange, workList: workTrack.workList, workStats: workStats]
     }
 
     def index(Integer max) {

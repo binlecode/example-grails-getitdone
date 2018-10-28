@@ -1,5 +1,10 @@
 package getitdone
 
+import org.apache.commons.lang.time.DateUtils
+
+import java.time.LocalDate
+import java.time.ZoneId
+
 /**
  * Work is the time tracking log for a given user spent on a given task.
  */
@@ -14,7 +19,10 @@ class Work {
     Float timeSpent
     String timeSpentUnit  // hour, min
     Float timeSpentInMin  // regulated to number of minutes
-    /** the date of the work */
+    /**
+     * the date of the work log
+     * Note the value is always at day level, aka, no time portion or timeZone offset
+     */
     Date workDate  //todo: must add db index on this column
 
     User worker
@@ -38,7 +46,25 @@ class Work {
         }
     }
 
+    /**
+     * Truncate workDate (type {@link java.util.Date}) to {@link java.time.LocalDate} by only taking the day portion.
+     *
+     * java.util.Date represents an instant on the time-line, not a "date", the equivalent class to java.util.Date
+     * in JSR-310 is {@link java.time.Instant}.
+     * A typical way to convert Date to LocalDate is:
+     * date.toInstance().atZone(...).toLocalDateTime() or date.toInstance().atZone(...).toLocalDate()
+     *
+     * For workDate, we simply need to get the day value since it is saved for day value use only.
+     * Therefore, we put zero time zone offset (UTC).
+     */
+    LocalDate getLocalWorkDate() {
+        workDate.toInstant().atZone(ZoneId.of('UTC')).toLocalDate()
+    }
 
+    /**
+     * Intercept timeSpent setter to support 2-decimal rounding
+     * @param timeSpent
+     */
     void setTimeSpent(Float timeSpent) {
         this.timeSpent = timeSpent?.round(2)  // round to at most 2 decimal resolution
     }

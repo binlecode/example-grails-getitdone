@@ -1,5 +1,9 @@
 package getitdone
 
+/**
+ * Task domain represents the unit of work. It consists of zero, one, or more {@link Work} logs.
+ * @see {@link Work}
+ */
 class Task {
 
     public static final String TASK_STATUS_STARTED = 'started'

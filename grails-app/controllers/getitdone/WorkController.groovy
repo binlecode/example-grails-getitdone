@@ -1,6 +1,7 @@
 package getitdone
 
 import grails.validation.ValidationException
+
 import static org.springframework.http.HttpStatus.*
 
 class WorkController {
@@ -13,11 +14,19 @@ class WorkController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     //todo: implement pagination support to this action
+    //todo: add work log stats such as total time spent for each day
     def timeSheet() {
-        def workList = workDataService.trackWork(params)
-        def workDateMin = workList*.workDate.min()
-        def workDateMax = workList*.workDate.max()
-        respond workList, model: [workDateRange: (workDateMin .. workDateMax)]
+
+        // by default the date range is current week
+
+//        def workWithStats = workDataService.trackWorkWithStats(params)
+
+        params.clientDate = '2018-09-10'
+
+        Map workTrack = workDataService.trackWorkForWeek(params.worker as User, params.clientDate as String)
+//        Map workTrack = workDataService.trackWorkForMonth(params.worker as User, params.clientDate as String)
+
+        render view: 'timeSheet', model: [workDateRange: workTrack.workDateRange, workList: workTrack.workList]
     }
 
     def index(Integer max) {

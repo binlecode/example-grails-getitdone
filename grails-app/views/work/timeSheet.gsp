@@ -26,7 +26,7 @@
                     <th>Task</th>
                     <th>Worker</th>
                     <g:each in="${this.workDateRange}" var="workDate" status="j">
-                        <th>${workDate.format('yyyy-MM-dd')}</th>
+                        <th>${workDate}</th>
                     </g:each>
                 </tr>
                 </thead>
@@ -55,7 +55,8 @@
 
                         <g:each in="${workDateRange}" var="workDate" state="k">
                             <td>
-                                <g:if test="${bean.workDate == workDate}">
+                                %{-- find the matching local work date for this work --}%
+                                <g:if test="${bean.localWorkDate == workDate}">
                                     <span class="badge">
                                     <g:link style="text-decoration: none; color: whitesmoke"
                                             method="GET" controller="work" action="show" params="[id: bean.id]">
@@ -71,29 +72,6 @@
 
                     </tr>
                 </g:each>
-
-                %{-- add stats line --}%
-                %{--<tr>--}%
-                    %{--<td>--}%
-                    %{--</td>--}%
-                    %{--<td>--}%
-                    %{--</td>--}%
-                    %{--<g:each in="${workDateRange}" var="workDate" state="k">--}%
-                        %{--<td>--}%
-                            %{--<g:if test="${bean.workDate == workDate}">--}%
-                                %{--<span class="badge">--}%
-                                    %{--<g:link style="text-decoration: none; color: whitesmoke"--}%
-                                            %{--method="GET" controller="work" action="show" params="[id: bean.id]">--}%
-                                        %{--${bean.timeSpent} ${bean.timeSpentUnit}--}%
-                                    %{--<g:if test="${bean.timeSpentUnit == getitdone.Work.TIME_UNIT_HOUR}">--}%
-                                    %{--( ${bean.timeSpentInMin} min )--}%
-                                    %{--</g:if>--}%
-                                    %{--</g:link>--}%
-                                %{--</span>--}%
-                            %{--</g:if>--}%
-                        %{--</td>--}%
-                    %{--</g:each>--}%
-                %{--</tr>--}%
 
                 </tbody>
             </table>

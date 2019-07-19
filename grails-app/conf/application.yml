@@ -93,9 +93,8 @@ hibernate:
 dataSource:
     pooled: true
     jmxExport: true
-    driverClassName: com.mysql.jdbc.Driver
-    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-    username: root
+    driverClassName: org.h2.Driver
+    username: sa
     password: ''
 
 environments:

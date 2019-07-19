@@ -15,9 +15,10 @@ grails create-app example-getitdone
 
 ## configuration
 
-#### datasource on mysql
+#### datasource
 
-In ```build.gradle``` file add:
+For demo purpose the embedded h2 database is good fit.
+When application is running, open web database console at `http://localhost/dbconsole`. And set `JDBC URL` to `jdbc:h2:./devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE`.
 
 
 

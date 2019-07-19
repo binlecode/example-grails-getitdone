@@ -19,8 +19,11 @@ management:
 
 dataSource:
     dbCreate: update
-    #            url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-    url: jdbc:mysql://127.0.0.1:3306/getitdone
+    url: jdbc:h2:./devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+    # url: jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+#    url: jdbc:mysql://127.0.0.1:3306/getitdone
+#    driverClassName: com.mysql.jdbc.Driver
+#    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     logSql: true
     formatSql: true
     properties:

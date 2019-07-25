@@ -4,6 +4,23 @@
 [![Build Status](https://travis-ci.org/binlecode/example-grails-getitdone.svg?branch=master)](https://travis-ci.org/binlecode/example-grails-getitdone)
 
 
+## features
+
+### workflow module
+#### task management
+ - creation from template or scratch (builder/factory) 
+ - assignment
+#### task tracking and workflow tracking
+#### comments on task or workflow
+#### management UI
+
+### scheduler module
+#### task scheduling
+- long due task by predefined time window expiration
+- task temporal nature by predefined calendar association
+
+#### task notification by status change detection (scanning) 
+
 ## app bootstrap
 
 ```bash

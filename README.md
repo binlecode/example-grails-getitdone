@@ -76,16 +76,34 @@ Once Travis-CI can build on Github push, the [build|passing] Travis status badge
 
 ## Docker container deployment
 
-fix server port in ```application.yml```
+First make sure gradle assemble builds the jar:
 
-By default gradlew assemble picks product environment. For security reason and demo purpose, we build jar with development env.
-
-added Dockerfile to the project root folder that
-- pulled in azul/java-zulu openjdk which is compatible with oracle version
-- build jar and copy to ```$WORKDIR```
-- run java jar from ```$WORKDIR```
-
-run 
 ```bash
-docker build .
+./gradlew assemble
+```
+
+By default gradlew assemble picks production environment. For demo purpose, we build jar with development env.
+
+A Dockerfile at the project root folder that does:
+- pulled in azul/java-zulu openjdk which is compatible with oracle version
+- build jar and copy to `$WORKDIR`
+- run java jar from `$WORKDIR`
+
+Build the image with a tag:
+
+```bash
+docker build -t example-grails-getitdone .
+```
+
+For jdk 8 and 9, it is a known issue that jvm may not know well about the virtual host memory boundary.
+
+```bash
+docker run --rm -p 8080:8080 -m 1024M example-grails-getitdone
+```
+
+to run in daemon mode
+
+```bash
+docker run -d -p 8080:8080 -m 1024M --name getitdone example-grails-getitdone
+docker logs -f getitdone
 ```

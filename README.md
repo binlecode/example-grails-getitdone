@@ -55,23 +55,13 @@ this will generate controller, and JPA compliant UserService class.
 
 
 ## Travis CI integration
-create a ```.travis.yml``` file to project root folder
-```yaml
-sudo: false # follows default ubuntu convention (Travis on ubuntu)
-before_cache:
-  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-cache:
-  directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/ # 
-language: groovy # 
-jdk:
-  - oraclejdk8 #  
-``` 
+
+Created a [`.travis.yml`](.travis.yml) file to project root folder.
+
 
 For more details, see [OCI guide](http://guides.grails.org/grails-on-travis-basics/guide/index.html).
 
-Once Travis-CI can build on Github push, the [build|passing] Travis status badge can be added to README.md (check the top of this file). 
+Travis-CI is configured on Github push, the [build|passing] Travis status badge has been be added to README.md (check the top of this file). 
 
 
 ## Docker container deployment
